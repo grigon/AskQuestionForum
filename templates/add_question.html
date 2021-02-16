@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Question page</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='style.css') }}>
+    </head>
+    <body>
+    <a href="/"><div class="logo">ೱ Ask Mate</div></a><br>
+        <h2>Question form</h2>
+            <form action="{{ url_for("add_question", question_id=question_id, question=question)}}" method="post">
+                <label for="question-input">Your Question:</label><br>
+                {% if question_id == -1%}
+                <textarea id="question_title_input" name="question_title" rows="1" cols="60"></textarea><br>
+                <textarea id="question-input" name="question" rows="4" cols="60" ></textarea><br><br>
+                {% else %}
+                    <textarea id="question_title_input" name="question_title" rows="1" cols="60">{{question[0].title }}</textarea><br>
+                    <textarea id="question-input" name="question" rows="4" cols="60" >{{ question[0].message }}</textarea><br><br>
+                {% endif %}
+
+{#                <form action="{{ url_for('file_upload') }}" method="post" enctype="multipart/form-data">#}
+{#                    Select image to upload:#}
+{#                    <input type="file" name="fileToUpload" id="fileToUpload">#}
+{#                    <button class="button" type="submit" value="Upload Image" name="submit">Upload</button>#}
+{#                </form>#}
+
+                <button class="button" type="submit">Save</button>
+            </form>
+    </body>
+</html>
